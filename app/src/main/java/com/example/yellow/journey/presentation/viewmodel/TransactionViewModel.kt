@@ -24,7 +24,6 @@ class TransactionViewModel @Inject constructor(
     }
 
     fun onSwipeComplete() {
-        // Immediately set success
         uiState = uiState.copy(isSuccess = true)
     }
 
@@ -55,7 +54,6 @@ class TransactionViewModel @Inject constructor(
     }
 
     fun dismissSuccess() {
-        // Reset success or do what you want after user closes the bottom sheet
         uiState = uiState.copy(isSuccess = false)
     }
 }

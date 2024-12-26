@@ -72,7 +72,7 @@ fun SwipeToTopUpButton(
                 thresholds = { _, _ -> FractionalThreshold(0.5f) },
                 orientation = Orientation.Horizontal
             )
-            .background(Color(0xFF4D4D4D), shape = RoundedCornerShape(30.dp)) // dark gray bg
+            .background(Color(0xFF4D4D4D), shape = RoundedCornerShape(30.dp))
     ) {
         if (isLoading) {
             CircularProgressIndicator(

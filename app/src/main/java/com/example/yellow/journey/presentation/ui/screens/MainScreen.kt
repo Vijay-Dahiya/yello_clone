@@ -16,19 +16,16 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    // We have 3 tabs, similar to "Chats", "Status", "Calls"
     val tabs = listOf("Home", "Transaction", "Profile")
     val pagerState = rememberPagerState(initialPage = 0)
     val scope = rememberCoroutineScope()
 
     Column(modifier = Modifier.fillMaxSize()) {
 
-        // Top App Bar - just a simple text or your own design
         TopAppBar(
             title = { Text("Yello Clone") }
         )
 
-        // Tab Row with 3 tabs
         TabRow(selectedTabIndex = pagerState.currentPage) {
             tabs.forEachIndexed { index, title ->
                 Tab(
@@ -43,7 +40,6 @@ fun MainScreen() {
             }
         }
 
-        // Pager for swiping between the 3 tabs
         HorizontalPager(
             count = tabs.size,
             state = pagerState

@@ -21,7 +21,6 @@ fun TransactionScreen(
     val state = viewModel.uiState
     val context = LocalContext.current
 
-    // If there's an error message, show a Toast
     LaunchedEffect(state.errorMessage) {
         state.errorMessage?.let { msg ->
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
@@ -29,15 +28,12 @@ fun TransactionScreen(
         }
     }
 
-    // A coroutine scope for showing/hiding the sheet
     val scope = rememberCoroutineScope()
 
-    // Create a bottom sheet state that starts hidden
     val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true // or false if you want half expansion
+        skipPartiallyExpanded = true
     )
 
-    // If isSuccess changes, show/hide bottom sheet
     LaunchedEffect(state.isSuccess) {
         if (state.isSuccess) {
             scope.launch { sheetState.show() }
@@ -46,28 +42,23 @@ fun TransactionScreen(
         }
     }
 
-    // The bottom sheet
     if (state.isSuccess){
         ModalBottomSheet(
             sheetState = sheetState,
             onDismissRequest = { viewModel.dismissSuccess() }
         ) {
-            // Because isSuccess triggers the sheet, we display the user’s typed text:
             TransactionSuccessBottomSheet(
                 mobileNumber = state.mobileNumber,
                 amount = state.topUpAmount,
                 onPrintReceipt = {
-                    // handle your print logic, or just ignore
                 },
                 onDismiss = {
-                    // user taps "dismiss"
                     viewModel.dismissSuccess()
                 }
             )
         }
     }
 
-    // The main screen content
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -93,13 +84,10 @@ fun TransactionScreen(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // The real swipe button
         SwipeToTopUpButton(
             isLoading = state.isLoading,
             onSwipeComplete = {
-                // Instead of a network call, we set success immediately:
                 viewModel.onSwipeComplete()
-                // Or call viewModel.topUp() if you want a dummy call
             }
         )
     }
