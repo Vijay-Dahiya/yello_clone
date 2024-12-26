@@ -29,11 +29,9 @@ class LoginViewModel @Inject constructor(
     }
 
     fun login() {
-        // Reset error
         uiState = uiState.copy(errorMessage = null, isLoading = true)
 
         viewModelScope.launch {
-            // (Optional) Artificial short delay before the actual "API" call
             delay(500)
 
             val result = authRepository.login(
@@ -42,14 +40,12 @@ class LoginViewModel @Inject constructor(
             )
 
             result.onSuccess { user ->
-                // On success, set loginSuccess = true, or handle as needed
                 uiState = uiState.copy(
                     isLoading = false,
                     loginSuccess = true,
                     errorMessage = null
                 )
             }.onFailure { error ->
-                // On failure, show the error
                 uiState = uiState.copy(
                     isLoading = false,
                     errorMessage = error.message,
@@ -59,8 +55,6 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    // Example of an extension function usage
-    // (Overly simple, but just to demonstrate)
     fun String.withAsterisks(): String {
         return "*** $this ***"
     }

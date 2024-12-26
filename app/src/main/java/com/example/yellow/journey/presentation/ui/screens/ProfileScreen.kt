@@ -79,7 +79,7 @@ fun ProfileScreen() {
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_print), // If you have an ID icon
+                        painter = painterResource(id = R.drawable.ic_print),
                         contentDescription = null,
                         tint = Color(0xFF333333),
                         modifier = Modifier.size(16.dp)

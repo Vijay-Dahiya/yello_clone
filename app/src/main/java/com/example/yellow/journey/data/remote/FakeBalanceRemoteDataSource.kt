@@ -8,8 +8,7 @@ object FakeBalanceRemoteDataSource {
     private val fakeBalance = Balance(amount = "19,981,150.00 ZAR")
 
     suspend fun fetchBalance(): Result<Balance> {
-        delay(1500) // Simulate network delay
-        // Always succeed, returning a fake balance
+        delay(1500)
         return Result.success(fakeBalance)
     }
 }

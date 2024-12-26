@@ -29,17 +29,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun YelloCloneApp() {
-    // Track whether user is logged in or not.
-    // Initially false, so user sees the login screen first.
     val isLoggedIn = remember { mutableStateOf(false) }
 
     MaterialTheme {
         Surface {
             if (isLoggedIn.value) {
-                // After login, show MainScreen
                 MainScreen()
             } else {
-                // Show a dummy login screen
                 LoginScreen(
                     onLoginSuccess = {
                         isLoggedIn.value = true

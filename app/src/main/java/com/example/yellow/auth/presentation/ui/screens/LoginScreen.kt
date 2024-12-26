@@ -23,9 +23,7 @@ fun LoginScreen(
 ) {
     val state = viewModel.uiState
 
-    // If login was successful, navigate or invoke callback
     if (state.loginSuccess) {
-        // This callback triggers the next screen or changes an "isLoggedIn" flag, etc.
         onLoginSuccess()
     }
 
@@ -65,12 +63,10 @@ fun LoginScreen(
                 Text(text = "Login")
             }
 
-            // Show loading
             if (state.isLoading) {
                 CircularProgressIndicator(modifier = Modifier.padding(top = 16.dp))
             }
 
-            // Show error message if any
             state.errorMessage?.let { error ->
                 Text(
                     text = error,
